@@ -15,7 +15,9 @@ serialized_doc['drinks'].each { |hsh| Ingredient.create!(name: hsh['strIngredien
 puts "Ingredients generated."
 
 # Cocktails seeding
-cocktail_names = %w[cosmopolitan mojito margarita negroni]
+cocktail_names = %w[cosmopolitan mojito margarita negroni caipirinha vesper paloma
+                    bramble americano mai\ tai sazerac aviation gimlet bloody\ mary
+                    manhattan dry\ martini]
 
 cocktail_names.each do |name|
   pic_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{name}"
