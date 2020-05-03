@@ -15,7 +15,14 @@ serialized_doc['drinks'].each { |hsh| Ingredient.create!(name: hsh['strIngredien
 puts "Ingredients generated."
 
 # Cocktails seeding
-cocktail_names = %w[Cosmopolitan Mojito Margarita Californication]
+cocktail_names = %w[cosmopolitan mojito margarita negroni]
 
-cocktail_names.each { |name| Cocktail.create!(name: name) }
+cocktail_names.each do |name|
+  pic_url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{name}"
+  serialized_doc = JSON.parse(open(pic_url).read)
+  picture_URL = serialized_doc['drinks'].first['strDrinkThumb']
+
+  cocktail = Cocktail.create!(name: name.capitalize, picture_URL: picture_URL)
+  puts "#{cocktail.name} - created"
+end
 puts "Cocktails generated"
