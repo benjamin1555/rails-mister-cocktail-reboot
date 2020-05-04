@@ -1,0 +1,14 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <h1><span class="border-bottom border-info">Add an Ingredient</span></h1>
+    <p class=""><em>to <%= @cocktail.name %></em></p>
+    <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.input :description %>
+      <%= f.association :ingredient, collection: Ingredient.order(:name) %>
+      <div class="btn-bottom mt-4">
+        <%= f.submit class: "btn btn-info" %>
+        <%= link_to 'Back', cocktail_path(@cocktail), class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -7,9 +7,24 @@
 
     <div class="col-5 mt-3">
       <h3 class="mb-3"><span class="border-bottom border-info">Ingredients: </span></h3>
-      <ul class="mb-4 pl-4">
+      <ul class="mb-4 pl-4 w-75">
         <% @cocktail.doses.each do |dose| %>
-          <li><%= "#{dose.description} - #{dose.ingredient.name}" %></li>
+          <li class="d-flex justify-content-between">
+            <div class="ingredients-content">
+              <%= "#{dose.description} - #{dose.ingredient.name}" %>
+            </div>
+            <div class="ingredients-actions">
+              <%= link_to edit_cocktail_dose_path(@cocktail, dose), class: "ml-5 text-info" do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              <%= link_to dose_path(dose),
+                          method: :delete,
+                          data: { confirm: "Are you sure?" },
+                          class: "text-warning" do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </li>
         <% end %>
       </ul>
       <%= link_to 'Add an Ingredient', new_cocktail_dose_path(@cocktail), class: "btn btn-info" %>
