@@ -1,11 +1,7 @@
 class DosesController < ApplicationController
   before_action :set_cocktail, only: [:new, :create, :edit, :update]
   before_action :set_dose, only: [:edit, :update]
-
-  def new
-    @dose = Dose.new
-    @ingredients = Ingredient.order(:name)
-  end
+  before_action :set_review, only: [:create, :update]
 
   def create
     @dose = Dose.new(dose_params)
@@ -13,7 +9,7 @@ class DosesController < ApplicationController
     if @dose.save
       redirect_to @cocktail
     else
-      render 'new'
+      render 'cocktails/show'
     end
   end
 
@@ -46,5 +42,9 @@ class DosesController < ApplicationController
 
   def set_dose
     @dose = Dose.find(params[:id])
+  end
+
+  def set_review
+    @review = Review.new
   end
 end
