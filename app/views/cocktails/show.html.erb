@@ -1,2 +1,18 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<div class="cocktail-show-container">
+  <div class="row">
+    <div class="col-7">
+      <h1 class="pl-4 mb-4"><%= @cocktail.name %></h1>
+      <%= image_tag @cocktail.picture_URL, alt: "#{@cocktail.name} picture", height: 600, width: 550%>
+    </div>
+
+    <div class="col-5 mt-3">
+      <h3 class="mb-3"><span class="border-bottom border-info">Ingredients: </span></h3>
+      <ul class="mb-4 pl-4">
+        <% @cocktail.doses.each do |dose| %>
+          <li><%= "#{dose.description} - #{dose.ingredient.name}" %></li>
+        <% end %>
+      </ul>
+      <%= link_to 'Add an Ingredient', new_cocktail_dose_path(@cocktail), class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

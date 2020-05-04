@@ -1,2 +1,13 @@
-<h1>Cocktails#new</h1>
-<p>Find me in app/views/cocktails/new.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-4">
+    <h1><span class="border-bottom border-info">Add a new Cocktail</span></h1>
+    <%= simple_form_for @cocktail do |f| %>
+      <%= f.input :name %>
+      <%= f.input :picture_URL %>
+      <div class="btn-bottom mt-4">
+        <%= f.submit class: "btn btn-info" %>
+        <%= link_to 'Back', cocktails_path, class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>
